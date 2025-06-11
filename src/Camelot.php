@@ -27,16 +27,18 @@ class Camelot
      * @param string|null $mode
      * @param string|null $output
      * @param string|null $binPath
+     * @param string|null $env
      * @param bool $debug
      * @throws PathAlreadyExists
      */
-    public function __construct(string $filePath, ?string $mode = null, ?string $output = null, ?string $binPath = null, bool $debug = false)
+    public function __construct(string $filePath, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?string $env = null, bool $debug = false)
     {
         $this->configuration = Configuration::make()
             ->setBinPath($binPath)
             ->setFilePath($filePath)
             ->setOutput($output)
             ->setMode($mode)
+            ->setEnv($env)
             ->setDebug($debug);
     }
 
@@ -92,11 +94,16 @@ class Camelot
     protected function run(string $command): string
     {
         $output = '';
-        $process = Process::fromShellCommandline($command);
+        $configuration = $this->configuration();
+        $process = Process::fromShellCommandline(
+            $command,
+            $configuration->getCwd(),
+            $configuration->getEnv()
+        );
 
         $process->run();
 
-        if ($this->configuration()->debug()) {
+        if ($configuration->debug()) {
             print('command: ' . $command . PHP_EOL);
             print('stdout: ' . $process->getOutput() . PHP_EOL);
             print('errout: ' . $process->getErrorOutput());

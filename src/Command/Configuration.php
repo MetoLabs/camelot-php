@@ -71,6 +71,20 @@ class Configuration
     protected string $binPath = 'camelot';
 
     /**
+     * Current working directory.
+     *
+     * @var string|null
+     */
+    protected ?string $cwd = null;
+
+    /**
+     * Env.
+     *
+     * @var string|null
+     */
+    protected ?string $env = null;
+
+    /**
      * Output format (csv, json, excel, html, markdown, sqlite).
      *
      * @var string
@@ -209,6 +223,16 @@ class Configuration
     }
 
     /**
+     * Get debug flag.
+     *
+     * @return bool
+     */
+    public function debug(): bool
+    {
+        return $this->debug;
+    }
+
+    /**
      * Get binary path.
      *
      * @return string
@@ -219,6 +243,26 @@ class Configuration
     }
 
     /**
+     * Get current working directory.
+     *
+     * @return ?string
+     */
+    public function getCwd(): ?string
+    {
+        return $this->cwd;
+    }
+
+    /**
+     * Get env.
+     *
+     * @return ?string
+     */
+    public function getEnv(): ?string
+    {
+        return $this->env;
+    }
+
+    /**
      * Get mode.
      *
      * @return string
@@ -226,16 +270,6 @@ class Configuration
     public function getMode(): string
     {
         return $this->mode;
-    }
-
-    /**
-     * Get debug flag.
-     *
-     * @return bool
-     */
-    public function debug(): bool
-    {
-        return $this->debug;
     }
 
     /**
@@ -267,6 +301,30 @@ class Configuration
     public function setBinPath(?string $binPath): self
     {
         $this->binPath = $binPath ?? 'camelot';
+        return $this;
+    }
+
+    /**
+     * Set current working directory.
+     *
+     * @param string|null $cwd
+     * @return self
+     */
+    public function setCwd(?string $cwd): self
+    {
+        $this->cwd = $cwd;
+        return $this;
+    }
+
+    /**
+     * Set env.
+     *
+     * @param string|null $env
+     * @return self
+     */
+    public function setEnv(?string $env): self
+    {
+        $this->env = $env;
         return $this;
     }
 
