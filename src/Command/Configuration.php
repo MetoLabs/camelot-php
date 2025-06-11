@@ -108,9 +108,9 @@ class Configuration
     /**
      * Path to the input PDF file.
      *
-     * @var string
+     * @var string|null
      */
-    protected string $filePath;
+    protected ?string $filePath;
 
     /**
      * Page numbers to extract tables from (e.g., "1,3-5").
