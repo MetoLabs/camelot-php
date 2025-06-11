@@ -75,7 +75,7 @@ You can optionally pass:
 - Debug mode (to print command + outputs)
 
 ```php
-$camelot = Camelot::make('/file.pdf', 'stream', null, '/usr/local/bin/camelot', true);
+$camelot = Camelot::make('/file.pdf', 'stream', null, '/usr/local/bin/camelot', null, true);
 ```
 
 ---
