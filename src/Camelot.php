@@ -23,7 +23,7 @@ class Camelot
     /**
      * Constructor.
      *
-     * @param string $filePath
+     * @param string|null $filePath
      * @param string|null $mode
      * @param string|null $output
      * @param string|null $binPath
@@ -31,7 +31,7 @@ class Camelot
      * @param bool $debug
      * @throws PathAlreadyExists
      */
-    public function __construct(string $filePath, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?array $env = null, bool $debug = false)
+    public function __construct(?string $filePath = null, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?array $env = null, bool $debug = false)
     {
         $this->configuration = Configuration::make()
             ->setBinPath($binPath)
@@ -45,7 +45,7 @@ class Camelot
     /**
      * Make.
      *
-     * @param string $path
+     * @param string|null $path
      * @param string|null $mode
      * @param string|null $output
      * @param string|null $binPath
@@ -54,7 +54,7 @@ class Camelot
      * @return self
      * @throws PathAlreadyExists
      */
-    public static function make(string $path, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?array $env = null, bool $debug = false): self
+    public static function make(?string $path = null, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?array $env = null, bool $debug = false): self
     {
         return new self($path, $mode, $output, $binPath, $env, $debug);
     }
@@ -130,10 +130,15 @@ class Camelot
      * Extract PDF.
      *
      * @param string $to
+     * @param string|null $filePath
      * @return string|array|object
      */
-    public function extract(string $to = 'array'): string|array|object
+    public function extract(string $to = 'array', ?string $filePath = null): string|array|object
     {
+        if (! is_null($filePath)) {
+            $this->configuration()->setFilePath($filePath);
+        }
+
         $extracted = $this->run(Command::make($this->configuration));
 
         if ($to === 'string') {
