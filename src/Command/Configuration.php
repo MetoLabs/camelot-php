@@ -255,9 +255,9 @@ class Configuration
     /**
      * Get env.
      *
-     * @return ?string
+     * @return ?array
      */
-    public function getEnv(): ?string
+    public function getEnv(): ?array
     {
         return $this->env;
     }
