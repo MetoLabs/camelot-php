@@ -343,10 +343,10 @@ class Configuration
     /**
      * Set file path.
      *
-     * @param string $filePath
+     * @param string|null $filePath
      * @return self
      */
-    public function setFilePath(string $filePath): self
+    public function setFilePath(?string $filePath): self
     {
         $this->filePath = $filePath;
         return $this;
