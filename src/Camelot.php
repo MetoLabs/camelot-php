@@ -27,11 +27,11 @@ class Camelot
      * @param string|null $mode
      * @param string|null $output
      * @param string|null $binPath
-     * @param string|null $env
+     * @param array|null $env
      * @param bool $debug
      * @throws PathAlreadyExists
      */
-    public function __construct(string $filePath, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?string $env = null, bool $debug = false)
+    public function __construct(string $filePath, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?array $env = null, bool $debug = false)
     {
         $this->configuration = Configuration::make()
             ->setBinPath($binPath)
@@ -49,12 +49,12 @@ class Camelot
      * @param string|null $mode
      * @param string|null $output
      * @param string|null $binPath
-     * @param string|null $env
+     * @param array|null $env
      * @param bool $debug
      * @return self
      * @throws PathAlreadyExists
      */
-    public static function make(string $path, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?string $env = null, bool $debug = false): self
+    public static function make(string $path, ?string $mode = null, ?string $output = null, ?string $binPath = null, ?array $env = null, bool $debug = false): self
     {
         return new self($path, $mode, $output, $binPath, $env, $debug);
     }

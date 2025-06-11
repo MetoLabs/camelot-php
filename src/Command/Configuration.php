@@ -80,9 +80,9 @@ class Configuration
     /**
      * Env.
      *
-     * @var string|null
+     * @var ?array|null
      */
-    protected ?string $env = null;
+    protected ?array $env = null;
 
     /**
      * Output format (csv, json, excel, html, markdown, sqlite).
@@ -319,10 +319,10 @@ class Configuration
     /**
      * Set env.
      *
-     * @param string|null $env
+     * @param array|null $env
      * @return self
      */
-    public function setEnv(?string $env): self
+    public function setEnv(?array $env): self
     {
         $this->env = $env;
         return $this;
