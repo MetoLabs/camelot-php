@@ -60,12 +60,17 @@ class Camelot
     }
 
     /**
-     * Get configuration.
+     * Get/set configuration.
      *
+     * @param Configuration|null $configuration
      * @return Configuration
      */
-    public function configuration(): Configuration
+    public function configuration(?Configuration $configuration = null): Configuration
     {
+        if (! is_null($configuration)) {
+            $this->configuration = $configuration;
+        }
+
         return $this->configuration;
     }
 
@@ -190,7 +195,7 @@ class Camelot
                     true
                 );
 
-                if (!isset($result['pages'][$page])) {
+                if (! isset($result['pages'][$page])) {
                     $result['pages'][$page] = [
                         'tables' => []
                     ];

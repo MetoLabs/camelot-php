@@ -117,7 +117,7 @@ class Configuration
      *
      * @var string|null
      */
-    protected ?string $pages = null;
+    protected ?string $pages = 'all';
 
     /**
      * Password for encrypted PDF.
@@ -384,12 +384,16 @@ class Configuration
     /**
      * Set pages.
      *
-     * @param string|null $pages
+     * @param string|array|null $pages
      * @return self
      */
-    public function setPages(?string $pages): self
+    public function setPages(string|array|null $pages): self
     {
-        $this->pages = $pages;
+        if (is_array($pages)) {
+            $this->pages = implode(',', $pages);
+        } else {
+            $this->pages = $pages;
+        }
         return $this;
     }
 
